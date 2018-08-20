@@ -18,3 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'user'], function () {
+    Route::group(['prefix' => 'auth'], function () {
+        Route::get('/facebook-sign-in','UserAuthController@facebookSignIn');
+        Route::get('/facebook-sign-in-callback','UserAuthController@facebookSignInCallbackProcess');
+    });
+});
