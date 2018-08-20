@@ -9,7 +9,11 @@ class UserAuthController extends Controller
 {
     //
     function facebookSignIn(){
-
+        $redirect_url= env('FB_REDIRECT');
+        return Socialite::driver('facebook')
+            ->scopes(['user_friend'])
+            ->redirectUrl($redirect_url)
+            ->redirect();
     }
     function facebookSignInCallbackProcess(){
         $redirect_url= env('FB_REDIRECT');
